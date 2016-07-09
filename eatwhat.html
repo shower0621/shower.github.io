@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+    <title>eat What</title>
+</head>
+<body>
+    <div id="content"></div>
+    <script type="text/babel">
+
+    var area = ["101", "公館","古亭"];
+    var restaurants = ["鼎泰豐", "今日壽司", "101食堂", "德克士"];
+
+
+    var CommentBox = React.createClass({
+        render: function () {
+            return  (
+                <div className = "CommentBox">
+                    <h1>阿你要吃什麼</h1>
+                    <RefreshBtn restaurant = {this.props.restaurant}/>
+                </div>
+            );
+        }
+    });
+
+    var RefreshBtn = React.createClass({
+        getInitialState: function() {
+                return {index : 0};
+        },
+        handleClick: function(event) {
+                this.setState({index:  Math.floor(Math.random()*4)});
+        },
+        render: function() {
+            return (
+                <div>
+                    <h2>{this.props.restaurant[this.state.index]} </h2>
+                    <p onClick={this.handleClick}>
+                        Refresh!
+                    </p>
+                </div>
+            );
+        }
+    });
+
+
+    ReactDOM.render (
+            <CommentBox restaurant ={restaurants}/>,
+            document.getElementById('content')
+    );
+
+
+
+    </script>
+</body>
+</html>
